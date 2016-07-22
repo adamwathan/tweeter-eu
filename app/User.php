@@ -25,9 +25,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function findByUsername($username)
+    {
+        return self::where('username', $username)->first();
+    }
+
     public function tweets()
     {
         return $this->hasMany(Tweet::class);
+    }
+
+    public function latestTweets()
+    {
+        return $this->tweets()->latest();
     }
 
     public function following()

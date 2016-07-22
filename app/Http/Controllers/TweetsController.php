@@ -33,10 +33,10 @@ class TweetsController extends Controller
      */
     public function store()
     {
-        $this->validate(Request::instance(), ['tweet' => ['required', 'max:141']]);
+        $this->validate(request(), ['tweet' => ['required', 'max:141']]);
 
         Auth::user()->tweets()->create([
-            'message' => Request::input('tweet'),
+            'body' => request('tweet'),
         ]);
 
         return redirect()->back();

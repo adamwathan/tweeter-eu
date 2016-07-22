@@ -24,13 +24,14 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('timeline', 'TimelineController@index');
-    Route::get('tweets', 'TweetsController@index');
-    Route::post('tweets', 'TweetsController@store');
+    Route::get('tweets', 'TweetsController@index')->name('tweets.index');
+    Route::post('tweets', 'TweetsController@store')->name('tweets.store');
 
-    Route::get('followers', 'FollowersController@index');
+    Route::get('followers', 'FollowersController@index')->name('followers.index');
 
-    Route::get('following', 'FollowingController@index');
-    Route::post('following', 'FollowingController@store');
-    Route::delete('following/{username}', 'FollowingController@destroy');
+    Route::get('following', 'FollowingController@index')->name('following.index');
+    Route::post('following', 'FollowingController@store')->name('following.store');
+    Route::delete('following/{username}', 'FollowingController@destroy')->name('following.destroy');
 });
+
+Route::get('{username}', 'UsersController@show')->name('users.show');

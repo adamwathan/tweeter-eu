@@ -6,6 +6,6 @@
         </small>
     </h5>
     <div>
-        {{ $tweet->message }}
+        {{ $tweet->body }}
     </div>
 </div>

@@ -24,7 +24,7 @@
                 @if (Auth::guest())
                 <li><a href="/sign-in">Sign in</a></li>
                 @else
-                <li><a href="/timeline">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/logout">Logout</a></li>
                 @endif
               </ul>

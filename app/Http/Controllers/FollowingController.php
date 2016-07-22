@@ -36,7 +36,7 @@ class FollowingController extends Controller
 
         Auth::user()->follow($user_to_follow);
 
-        return redirect('/tweets');
+        return redirect()->route('following.index');
     }
 
     public function destroy($username)
@@ -45,6 +45,6 @@ class FollowingController extends Controller
 
         Auth::user()->unfollow($user_to_unfollow);
 
-        return redirect('/tweets');
+        return redirect()->back();
     }
 }

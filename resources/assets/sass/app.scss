@@ -67,6 +67,16 @@ body {
             color: rgb(255, 255, 255);
         }
     }
+
+    .navbar-toggle {
+        border-color: rgba(255, 255, 255, 0.8);
+        &:hover, &:focus, &:active {
+            background-color: rgba(0,0,0,0.2);
+        }
+        .icon-bar {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    }
 }
 
 .u-mt-0 {
@@ -75,11 +85,17 @@ body {
 .u-mb-0 {
     margin-bottom: 0;
 }
+
+.u-pa-3 {
+    padding: 3rem !important;
+}
+
 .flex-justified {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .stat {
     display: block;
     text-align: center;

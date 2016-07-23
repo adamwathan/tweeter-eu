@@ -5809,12 +5809,21 @@ body {
     color: rgba(255, 255, 255, 0.8); }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus:hover, .navbar-default .navbar-nav > li > a:active:focus, .navbar-default .navbar-nav > li > a:active:hover {
       color: white; }
+  .navbar-default .navbar-toggle {
+    border-color: rgba(255, 255, 255, 0.8); }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:active {
+      background-color: rgba(0, 0, 0, 0.2); }
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: rgba(255, 255, 255, 0.8); }
 
 .u-mt-0 {
   margin-top: 0; }
 
 .u-mb-0 {
   margin-bottom: 0; }
+
+.u-pa-3 {
+  padding: 3rem !important; }
 
 .flex-justified {
   display: -webkit-box;

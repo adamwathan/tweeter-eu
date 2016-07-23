@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use Auth;
-use Illuminate\Contracts\Auth\Guard;
+use App\Tweet;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,7 @@ class HomeController extends Controller
 
     private function timeline()
     {
-        $tweets = Auth::user()->timeline()->paginate(20);
+        $tweets = Tweet::latest()->paginate(20);
 
         return view('timeline.index', [
             'tweets' => $tweets,

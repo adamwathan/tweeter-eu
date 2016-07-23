@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-4">
-                <a href="/tweets" class="stat">
+                <a href="/{{ Auth::user()->username }}" class="stat">
                     <div class="stat-value">
                         {{ $tweetCount }}
                     </div>

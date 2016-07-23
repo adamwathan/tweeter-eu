@@ -12,20 +12,6 @@ use Illuminate\Support\Facades\Request;
 class TweetsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $tweets = Auth::user()->tweets()->latest()->paginate(20);
-
-        return view('tweets.index', [
-            'tweets' => $tweets,
-        ]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request

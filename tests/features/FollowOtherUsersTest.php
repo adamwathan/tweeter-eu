@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Mail\Message;
+use MailThief\Facades\MailThief;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -25,12 +26,16 @@ class FollowOtherUsersTest extends TestCase
 
     public function test_a_user_receives_a_notification_email_when_they_are_followed()
     {
-        $user = factory(User::class)->create(['username' => 'follower']);
+        $user = factory(User::class)->create(['username' => 'johndoe']);
         $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
+
+        MailThief::hijack();
 
         $this->actingAs($user)
             ->post('/following', ['username' => 'to-follow']);
 
-
+        $this->assertTrue(MailThief::hasMessageFor($userToFollow->email));
+        $this->assertTrue(MailThief::lastMessage()->contains('johndoe'));
+        $this->assertContains("new follower", MailThief::lastMessage()->subject);
     }
 }

@@ -15,32 +15,19 @@ class FollowOtherUsersTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp()
-    {
-        parent::setUp();
-        MailThief::hijack();
-    }
-
-    public function est_a_user_can_follow_another_user()
+    public function test_a_user_can_follow_another_user()
     {
         $user = factory(User::class)->create([]);
         $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
+        Event::spy();
 
         $this->actingAs($user)
             ->post('/following', ['username' => 'to-follow']);
 
         $this->assertRedirectedToRoute('following.index');
         $this->assertTrue($user->follows($userToFollow));
-    }
-
-    public function test_a_new_follower_event_is_fired_when_following_another_user()
-    {
-        $this->expectsEvents(NewFollower::class);
-
-        $user = factory(User::class)->create(['username' => 'johndoe']);
-        $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
-
-        $this->actingAs($user)
-            ->post('/following', ['username' => 'to-follow']);
+        Event::shouldHaveReceived('fire')->with(Mockery::on(function ($event) use ($user, $userToFollow) {
+            return $event->follower->equals($user) && $event->followed->equals($userToFollow);
+        }));
     }
 }

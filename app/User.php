@@ -25,6 +25,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function equals($user)
+    {
+        return $this->id == $user->id;
+    }
+
     public static function findByUsername($username)
     {
         return self::where('username', $username)->first();

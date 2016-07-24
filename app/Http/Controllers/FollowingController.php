@@ -26,8 +26,8 @@ class FollowingController extends Controller
 
         Auth::user()->follow($userToFollow);
 
-        Mail::send('emails.new-follower', [], function ($m) use ($userToFollow) {
-            $m->to($userToFollow->email);
+        Mail::send('emails.new-follower', ['user' => Auth::user()], function ($m) use ($userToFollow) {
+            $m->to($userToFollow->email)->subject("You have a new follower!");
         });
 
         return redirect()->route('following.index');

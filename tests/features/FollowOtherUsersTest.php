@@ -12,6 +12,12 @@ class FollowOtherUsersTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp()
+    {
+        parent::setUp();
+        MailThief::hijack();
+    }
+
     public function test_a_user_can_follow_another_user()
     {
         $user = factory(User::class)->create();
@@ -28,8 +34,6 @@ class FollowOtherUsersTest extends TestCase
     {
         $user = factory(User::class)->create(['username' => 'johndoe']);
         $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
-
-        MailThief::hijack();
 
         $this->actingAs($user)
             ->post('/following', ['username' => 'to-follow']);

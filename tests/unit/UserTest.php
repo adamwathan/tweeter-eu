@@ -28,4 +28,16 @@ class UserTest extends TestCase
         $this->assertNotNull($tweet);
         $this->assertEquals('My first tweet', $tweet->body);
     }
+
+    public function test_can_follow_another_user()
+    {
+        $user = factory(User::class)->create();
+        $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
+
+        $this->assertFalse($user->follows($userToFollow));
+
+        $user->follow($userToFollow);
+
+        $this->assertTrue($user->follows($userToFollow));
+    }
 }

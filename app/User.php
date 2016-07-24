@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     public function follows($user)
     {
-        return $this->following->contains($user);
+        return $this->following()->where('following_id', $user->id)->count() > 0;
     }
 
     public function notFollowing()

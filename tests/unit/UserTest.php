@@ -18,4 +18,14 @@ class UserTest extends TestCase
         $this->assertEquals($createdUser->id, $foundUser->id);
         $this->assertEquals('janedoe', $foundUser->username);
     }
+
+    public function test_post_new_tweet()
+    {
+        $user = factory(User::class)->create();
+        $user->tweet('My first tweet');
+
+        $tweet = $user->tweets()->first();
+        $this->assertNotNull($tweet);
+        $this->assertEquals('My first tweet', $tweet->body);
+    }
 }

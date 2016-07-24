@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tweet::class);
     }
+
+    public function tweet($tweetBody)
+    {
+        $this->tweets()->create(['body' => $tweetBody]);
+    }
 }

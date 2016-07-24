@@ -11,7 +11,6 @@ class UsersController extends Controller
         $user = User::findByUsername($username);
         return view('users.show', [
             'user' => $user,
-            'tweets' => $user->latestTweets()->paginate(20),
         ]);
     }
 }

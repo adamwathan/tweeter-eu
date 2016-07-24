@@ -8,5 +8,7 @@
         </li>
     @endforeach
 </ul>
-{!! $tweets->links('partials.pagination') !!}
+<div class="text-center">
+    {!! $tweets->links('partials.pagination') !!}
+</div>
 @endsection

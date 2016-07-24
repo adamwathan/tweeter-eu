@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\User;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FollowingController extends Controller
 {
@@ -21,9 +22,13 @@ class FollowingController extends Controller
 
     public function store()
     {
-        $user_to_follow = User::where('username', request('username'))->firstOrFail();
+        $userToFollow = User::where('username', request('username'))->firstOrFail();
 
-        Auth::user()->follow($user_to_follow);
+        Auth::user()->follow($userToFollow);
+
+        Mail::send('emails.new-follower', [], function ($m) use ($userToFollow) {
+            $m->to($userToFollow->email);
+        });
 
         return redirect()->route('following.index');
     }

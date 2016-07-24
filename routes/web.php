@@ -23,4 +23,6 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::any('logout', 'LoginController@logout');
 });
 
+Route::post('tweets', 'TweetsController@store');
+
 Route::get('{username}', 'UsersController@show')->name('users.show');

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PostNewTweetTest extends TestCase
 {
+    use DatabaseMigrations;
+
     public function test_posting_a_new_tweet()
     {
         $user = factory(User::class)->create();

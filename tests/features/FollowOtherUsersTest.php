@@ -20,7 +20,7 @@ class FollowOtherUsersTest extends TestCase
 
     public function test_a_user_can_follow_another_user()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([]);
         $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
 
         $this->actingAs($user)

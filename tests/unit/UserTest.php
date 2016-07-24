@@ -31,13 +31,16 @@ class UserTest extends TestCase
 
     public function test_can_follow_another_user()
     {
-        $user = factory(User::class)->create();
-        $userToFollow = factory(User::class)->create(['username' => 'to-follow']);
+        $dhh = factory(User::class)->create(['username' => 'dhh']);
+        $adamwathan = factory(User::class)->create(['username' => 'adamwathan']);
 
-        $this->assertFalse($user->follows($userToFollow));
+        $this->assertFalse($dhh->follows($adamwathan));
 
-        $user->follow($userToFollow);
+        $dhh->follow($adamwathan);
 
-        $this->assertTrue($user->follows($userToFollow));
+        $this->assertTrue($dhh->follows($adamwathan));
     }
 }
+
+
+

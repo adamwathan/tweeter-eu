@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests;
+use App\Events\NewFollower;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
 
 class FollowingController extends Controller
 {
@@ -26,9 +28,7 @@ class FollowingController extends Controller
 
         Auth::user()->follow($userToFollow);
 
-        Mail::send('emails.new-follower', ['user' => Auth::user()], function ($m) use ($userToFollow) {
-            $m->to($userToFollow->email)->subject("You have a new follower!");
-        });
+        Event::fire(new NewFollower(Auth::user(), $userToFollow));
 
         return redirect()->route('following.index');
     }

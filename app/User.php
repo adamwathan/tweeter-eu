@@ -50,12 +50,6 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
     }
 
-    public function timeline()
-    {
-        $following_ids = $this->following()->pluck('following_id')->push($this->id);
-        return Tweet::whereIn('user_id', $following_ids)->latest();
-    }
-
     public function follow($user)
     {
         if ($this->follows($user)) {

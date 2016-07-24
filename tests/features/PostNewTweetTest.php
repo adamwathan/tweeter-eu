@@ -14,9 +14,30 @@ class PostNewTweetTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->visit('/')
-            ->type('My first tweet', 'tweet')
-            ->press('Tweet')
-            ->see('My first tweet');
+            ->post('/tweets', ['tweet' => 'My first tweet']);
+
+        $this->assertEquals('My first tweet', $user->tweets()->first()->body);
+    }
+
+    public function test_a_body_is_required_when_posting_a_tweet()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->post('/tweets', ['tweet' => '']);
+
+        $this->assertEquals(0, $user->tweets()->count());
+        $this->assertSessionHasErrors('tweet');
+    }
+
+    public function test_tweets_cannot_exceed_141_characters()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->post('/tweets', ['tweet' => str_repeat('a', 142)]);
+
+        $this->assertEquals(0, $user->tweets()->count());
+        $this->assertSessionHasErrors('tweet');
     }
 }

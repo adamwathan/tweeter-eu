@@ -10,7 +10,12 @@ class TweetsController extends Controller
 {
     public function store()
     {
+        $this->validate(request(), [
+            'tweet' => ['required', 'max:141'],
+        ]);
+
         Auth::user()->tweet(request('tweet'));
+
         return redirect('/');
     }
 }

@@ -4,9 +4,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class PostNewTweetTest extends TestCase
+class UserTest extends TestCase
 {
-    public function test_posting_a_new_tweet()
+    public function test_find_by_username()
     {
         // ...
     }

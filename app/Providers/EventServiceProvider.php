@@ -15,9 +15,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        NewFollower::class => [
-            EmailNewFollowerNotification::class,
-        ],
+        //
     ];
 
     /**

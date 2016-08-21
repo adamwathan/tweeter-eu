@@ -2,8 +2,15 @@
 
 @section('content')
 <ul class="list-group">
-    <li class="list-group-item list-group-item-lg">
-        <h4 class="u-mt-0 u-mb-0">Tweets by {{ "@{$user->username}" }}</h4>
+    <li class="list-group-item list-group-item-lg flex-justified">
+        <div>
+            <h4 class="u-mt-0 u-mb-0">Tweets by {{ "@{$user->username}" }}</h4>
+        </div>
+        {{-- <form action="/following" method="POST">
+            {!! csrf_field() !!}
+            <input type="hidden" name="username" value="{{ $user->username }}">
+            <button type="submit" href="#" class="btn btn-default">Follow</button>
+        </form> --}}
     </li>
 
     @forelse ($tweets as $tweet)

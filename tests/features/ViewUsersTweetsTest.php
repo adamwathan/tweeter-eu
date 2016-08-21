@@ -13,7 +13,7 @@ class ViewUsersTweetsTest extends TestCase
     public function test_view_a_users_tweets()
     {
         $user = factory(User::class)->create(['username' => 'johndoe']);
-        $tweet = factory(Tweet::class)->create(['body' => 'My first tweet']);
+        $tweet = factory(Tweet::class)->make(['body' => 'My first tweet']);
         $user->tweets()->save($tweet);
 
         $this->visit('/johndoe')

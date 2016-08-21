@@ -6,7 +6,7 @@
         <h4 class="u-mt-0 u-mb-0">Tweets by {{ "@{$user->username}" }}</h4>
     </li>
 
-    @foreach ($user->tweets as $tweet)
+    @foreach ($tweets as $tweet)
     <li class="list-group-item list-group-item-lg">
         @include('tweets.partials.show', ['tweet' => $tweet])
     </li>

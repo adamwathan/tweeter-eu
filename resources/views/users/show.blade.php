@@ -6,11 +6,13 @@
         <div>
             <h4 class="u-mt-0 u-mb-0">Tweets by {{ "@{$user->username}" }}</h4>
         </div>
+        @if (Auth::check() && Auth::user()->canFollow($user))
         <form action="/following" method="POST">
             {!! csrf_field() !!}
             <input type="hidden" name="username" value="{{ $user->username }}">
             <button type="submit" href="#" class="btn btn-default">Follow</button>
         </form>
+        @endif
     </li>
 
     @forelse ($tweets as $tweet)

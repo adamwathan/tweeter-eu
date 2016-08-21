@@ -80,4 +80,11 @@ class PostNewTweetTest extends TestCase
         $this->assertEquals(0, $user->tweets()->count());
         $this->assertSessionHasErrors('tweet');
     }
+
+    public function test_only_authenticated_users_can_tweet()
+    {
+        $this->post('/tweets', ['tweet' => 'My tweet!']);
+
+        $this->assertRedirectedTo('/sign-in');
+    }
 }

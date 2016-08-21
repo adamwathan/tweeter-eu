@@ -66,4 +66,10 @@ class User extends Authenticatable
     {
         return $this->following()->where('following_id', $user->id)->count() > 0;
     }
+
+    public function timeline()
+    {
+        $following_ids = $this->following()->pluck('following_id')->push($this->id);
+        return Tweet::whereIn('user_id', $following_ids)->latest();
+    }
 }

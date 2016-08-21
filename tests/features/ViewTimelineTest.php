@@ -12,19 +12,20 @@ class ViewTimelineTest extends TestCase
 
     public function test_viewing_main_timeline()
     {
-        $john = factory(User::class)->create(['username' => 'john']);
-        $john->tweets()->save(factory(Tweet::class)->make(['body' => "john's tweet"]));
+        $me = factory(User::class)->create();
+        $me->tweet("My tweet!");
 
-        factory(User::class)->create(['username' => 'jane'])
-            ->tweets()->save(factory(Tweet::class)->make(['body' => "jane's tweet"]));
+        $followed = factory(User::class)->create();
+        $followed->tweet("Followed's tweet!");
+        $me->follow($followed);
 
-        factory(User::class)->create(['username' => 'steve'])
-            ->tweets()->save(factory(Tweet::class)->make(['body' => "steve's tweet"]));
+        $notFollowed = factory(User::class)->create();
+        $notFollowed->tweet("Not followed's tweet!");
 
-        $this->actingAs($john)
-            ->visit('/')
-            ->see("john's tweet")
-            ->see("jane's tweet")
-            ->see("steve's tweet");
+        $this->actingAs($me)->visit('/');
+
+        $this->see("My tweet!");
+        $this->see("Followed's tweet!");
+        $this->dontSee("Not followed's tweet!");
     }
 }

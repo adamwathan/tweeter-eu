@@ -1,6 +1,6 @@
 <ul class="list-group">
     <li class="list-group-item">
-        <h4>Who To Follow</h4>
+        <h4>Who to follow</h4>
     </li>
 
     @forelse ($users as $user)

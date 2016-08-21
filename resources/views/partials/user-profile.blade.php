@@ -1,11 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-heading text-center">
-        <h4>{{ '@' . $user->username }}</h4>
+        <a href="{{ route('users.show', ['username' => $user->username]) }}" class="link-secondary"><h4>{{ '@' . $user->username }}</h4></a>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-4">
-                <a href="{{ route('users.show', ['username' => Auth::user()->username]) }}" class="stat">
+                <a href="{{ route('users.show', ['username' => $user->username]) }}" class="stat">
                     <div class="stat-value">
                         {{ $tweetCount }}
                     </div>
@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="col-xs-4">
-                <a href="/followers" class="stat">
+                <a href="{{ route('followers.index', ['username' => $user->username]) }}" class="stat">
                     <div class="stat-value">
                         {{ $followerCount }}
                     </div>
@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="col-xs-4">
-                <a href="/following" class="stat">
+                <a href="{{ route('following.index', ['username' => $user->username]) }}" class="stat">
                     <div class="stat-value">
                         {{ $followingCount }}
                     </div>

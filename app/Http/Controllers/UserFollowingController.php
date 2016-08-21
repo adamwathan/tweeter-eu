@@ -11,14 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 
-class FollowingController extends Controller
+class UserFollowingController extends Controller
 {
-    public function index()
+    public function index($username)
     {
-        $users = Auth::user()->following;
+        $user = User::findByUsername($username);
 
         return view('following.index', [
-            'users' => $users,
+            'user' => $user,
+            'following' => $user->following,
         ]);
     }
 

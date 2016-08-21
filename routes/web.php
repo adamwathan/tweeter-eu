@@ -26,11 +26,11 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::post('tweets', 'TweetsController@store')->name('tweets.store');
 
-    Route::get('followers', 'FollowersController@index')->name('followers.index');
+    Route::get('{username}/followers', 'UserFollowersController@index')->name('followers.index');
 
-    Route::get('following', 'FollowingController@index')->name('following.index');
-    Route::post('following', 'FollowingController@store')->name('following.store');
-    Route::delete('following/{username}', 'FollowingController@destroy')->name('following.destroy');
+    Route::get('{username}/following', 'UserFollowingController@index')->name('following.index');
+    Route::post('{username}/following', 'UserFollowingController@store')->name('following.store');
+    Route::delete('{username}/following/{username}', 'FollowingController@destroy')->name('following.destroy');
 });
 
 Route::get('{username}', 'UsersController@show')->name('users.show');

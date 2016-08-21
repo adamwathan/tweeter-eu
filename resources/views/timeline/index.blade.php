@@ -1,4 +1,4 @@
-@extends('_layouts.user-sidebar')
+@extends('_layouts.app')
 
 @section('content')
 <ul class="list-group">
@@ -14,4 +14,8 @@
 <div class="text-center">
     {!! $tweets->links('partials.pagination') !!}
 </div>
+@endsection
+
+@section('sidebar')
+    @include('partials.user-profile', ['user' => Auth::user()])
 @endsection

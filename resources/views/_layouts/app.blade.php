@@ -8,6 +8,9 @@
         </div>
         <div class="col-sm-5">
             @yield('sidebar')
+            @if(Auth::check())
+            @include('partials.who-to-follow')
+            @endif
         </div>
     </div>
 </div>

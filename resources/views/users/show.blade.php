@@ -16,8 +16,4 @@
 
 @section('sidebar')
     @include('partials.user-profile', ['user' => $user])
-
-    @if(Auth::check())
-    @include('partials.who-to-follow')
-    @endif
 @endsection

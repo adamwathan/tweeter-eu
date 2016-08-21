@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b80557f49c4b49b3057fb39494490b8",
-    "content-hash": "79dc9f72ca5c1f2b04727363ca57607d",
+    "hash": "5a08e1eae6a7c85df1904f91d54e4753",
+    "content-hash": "acb2b492c650d1bb0c06669736e708d0",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1808,16 +1808,16 @@
         },
         {
             "name": "tightenco/mailthief",
-            "version": "v0.2.3",
+            "version": "dev-53-compat",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/mailthief.git",
-                "reference": "274d4129ad8ad80cd122ab5448f31f1bb554fa8a"
+                "reference": "f88128f367c91d1611c03e6709ce82de4aa1fc5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/mailthief/zipball/274d4129ad8ad80cd122ab5448f31f1bb554fa8a",
-                "reference": "274d4129ad8ad80cd122ab5448f31f1bb554fa8a",
+                "url": "https://api.github.com/repos/tightenco/mailthief/zipball/f88128f367c91d1611c03e6709ce82de4aa1fc5c",
+                "reference": "f88128f367c91d1611c03e6709ce82de4aa1fc5c",
                 "shasum": ""
             },
             "require": {
@@ -1845,7 +1845,7 @@
                 }
             ],
             "description": "A fake Mailer for Laravel applications that takes the pain out of testing mail.",
-            "time": "2016-08-03 17:38:40"
+            "time": "2016-07-24 18:59:06"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3466,7 +3466,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "tightenco/mailthief": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

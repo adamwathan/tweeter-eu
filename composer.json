@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "tightenco/mailthief": "^0.2.1"
+        "tightenco/mailthief": "dev-53-compat"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

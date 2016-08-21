@@ -14,8 +14,10 @@ class ViewTimelineTest extends TestCase
     {
         $john = factory(User::class)->create(['username' => 'john']);
         $john->tweets()->save(factory(Tweet::class)->make(['body' => "john's tweet"]));
+
         factory(User::class)->create(['username' => 'jane'])
             ->tweets()->save(factory(Tweet::class)->make(['body' => "jane's tweet"]));
+
         factory(User::class)->create(['username' => 'steve'])
             ->tweets()->save(factory(Tweet::class)->make(['body' => "steve's tweet"]));
 

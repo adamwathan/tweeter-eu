@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function follow($user)
     {
-        if ($this->follows($user)) {
+        if (! $this->canFollow($user)) {
             return;
         }
         $this->following()->attach($user);

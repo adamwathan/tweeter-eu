@@ -15,7 +15,3 @@
     {!! $tweets->links('partials.pagination') !!}
 </div>
 @endsection
-
-@section('sidebar')
-    @include('partials.user-profile', ['user' => Auth::user()])
-@endsection

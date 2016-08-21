@@ -49,47 +49,4 @@ class User extends Authenticatable
     {
         $this->tweets()->create(['body' => $tweetBody]);
     }
-
-    public function following()
-    {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
-    }
-
-    public function followers()
-    {
-        return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
-    }
-
-    public function timeline()
-    {
-        $following_ids = $this->following()->pluck('following_id')->push($this->id);
-        return Tweet::whereIn('user_id', $following_ids)->latest();
-    }
-
-    public function follow($user)
-    {
-        if ($this->follows($user)) {
-            return;
-        }
-        $this->following()->attach($user);
-    }
-
-    public function unfollow($user)
-    {
-        if (! $this->follows($user)) {
-            return;
-        }
-        $this->following()->detach($user);
-    }
-
-    public function follows($user)
-    {
-        return $this->following()->where('following_id', $user->id)->count() > 0;
-    }
-
-    public function notFollowing()
-    {
-        $following_ids = $this->following()->pluck('following_id')->push($this->id);
-        return User::whereNotIn('id', $following_ids);
-    }
 }

@@ -17,15 +17,8 @@ class HomeController extends Controller
             return view('welcome');
         }
 
-        return $this->timeline();
-    }
-
-    private function timeline()
-    {
-        $tweets = Auth::user()->timeline()->paginate(20);
-
         return view('timeline.index', [
-            'tweets' => $tweets,
+            'tweets' => Tweet::latest()->paginate(),
         ]);
     }
 }

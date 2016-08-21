@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tweet::class);
     }
+
+    public function latestTweets()
+    {
+        return $this->tweets()->latest();
+    }
 }

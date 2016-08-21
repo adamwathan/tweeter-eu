@@ -24,7 +24,7 @@ class FollowOtherUsersTest extends TestCase
         $this->actingAs($user)
             ->post('/following', ['username' => 'to-follow']);
 
-        $this->assertRedirectedToRoute('following.index');
+        $this->assertRedirectedToRoute('user-following.index', ['username' => $user->username]);
         $this->assertTrue($user->follows($userToFollow));
         Event::shouldHaveReceived('fire')->with(Mockery::on(function ($event) use ($user, $userToFollow) {
             return $event->follower->equals($user) && $event->followed->equals($userToFollow);

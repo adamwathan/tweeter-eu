@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('partials.user-profile', function ($view) {
             $view->with('tweetCount', $view->user->tweets()->count());
+            $view->with('followingCount', $view->user->following()->count());
+            $view->with('followerCount', $view->user->followers()->count());
         });
     }
 

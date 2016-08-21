@@ -19,3 +19,7 @@
     @endforelse
 </ul>
 @endsection
+
+@section('sidebar')
+    @include('partials.user-profile', ['user' => $user])
+@endsection

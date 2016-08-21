@@ -34,17 +34,23 @@ class UserTest extends TestCase
     {
         $john = factory(User::class)->create(['username' => 'john']);
         $mary = factory(User::class)->create(['username' => 'mary']);
-
         $this->assertFalse($john->follows($mary));
 
         $john->follow($mary);
-
         $this->assertTrue($john->follows($mary));
     }
 
     public function test_can_unfollow_another_user()
     {
-        // @todo
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
+        $this->assertFalse($john->follows($mary));
+
+        $john->follow($mary);
+        $this->assertTrue($john->follows($mary));
+
+        $john->unfollow($mary);
+        $this->assertFalse($john->follows($mary));
     }
 
     public function test_timeline_contains_users_tweets()

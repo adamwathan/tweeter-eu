@@ -72,6 +72,11 @@ class User extends Authenticatable
         $this->following()->attach($user);
     }
 
+    public function unfollow($user)
+    {
+        $this->following()->detach($user);
+    }
+
     public function follows($user)
     {
         return $this->following()->where('following_id', $user->id)->count() > 0;

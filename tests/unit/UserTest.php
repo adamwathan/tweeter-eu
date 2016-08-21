@@ -114,4 +114,17 @@ class UserTest extends TestCase
             return $tweet->body == "Following tweet!";
         }));
     }
+
+    public function test_can_unfollow_another_user()
+    {
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
+        $this->assertFalse($john->follows($mary));
+
+        $john->follow($mary);
+        $this->assertTrue($john->follows($mary));
+
+        $john->unfollow($mary);
+        $this->assertFalse($john->follows($mary));
+    }
 }

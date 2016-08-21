@@ -16,4 +16,13 @@ class FollowingController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($username)
+    {
+        $user_to_unfollow = User::where('username', $username)->firstOrFail();
+
+        Auth::user()->unfollow($user_to_unfollow);
+
+        return redirect()->route('user-following.index', ['username' => Auth::user()->username]);
+    }
 }

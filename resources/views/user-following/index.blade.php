@@ -13,6 +13,11 @@
                 <strong>{{ '@' . $follow->username }}</strong>
             </a>
         </div>
+        <form action="/following/{{ $follow->username }}" method="POST">
+            {!! csrf_field() !!}
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-sm btn-danger">Unfollow</button>
+        </form>
     </li>
     @empty
     <li class="list-group-item list-group-item-lg text-center">

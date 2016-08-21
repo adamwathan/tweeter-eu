@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tweets', 'TweetsController@store')->name('tweets.store');
 
     Route::post('/following', 'FollowingController@store')->name('following.store');
-
+    Route::delete('/following/{followName}', 'FollowingController@destroy')->name('following.destroy');
 });
 
 Route::get('/{username}/following', 'UserFollowingController@index')->name('user-following.index');

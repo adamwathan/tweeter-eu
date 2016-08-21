@@ -51,4 +51,28 @@ class UserTest extends TestCase
         $this->assertTrue($john->follows($mary));
         $this->assertEquals(1, $john->following()->count());
     }
+
+    public function test_user_is_allowed_to_follow_someone_they_do_not_follow()
+    {
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
+
+        $this->assertTrue($john->canFollow($mary));
+    }
+
+    public function test_user_is_not_allowed_to_follow_someone_they_already_follow()
+    {
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
+        $john->follow($mary);
+
+        $this->assertFalse($john->canFollow($mary));
+    }
+
+    public function test_user_is_not_allowed_to_follow_themselves()
+    {
+        $john = factory(User::class)->create(['username' => 'john']);
+
+        $this->assertFalse($john->canFollow($john));
+    }
 }

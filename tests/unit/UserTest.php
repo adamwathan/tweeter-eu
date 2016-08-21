@@ -40,6 +40,18 @@ class UserTest extends TestCase
         $this->assertTrue($john->follows($mary));
     }
 
+    public function test_following_the_same_user_again_does_not_duplicate_the_record()
+    {
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
+        $this->assertFalse($john->follows($mary));
+
+        $john->follow($mary);
+        $john->follow($mary);
+        $this->assertTrue($john->follows($mary));
+        $this->assertEquals(1, $john->following()->count());
+    }
+
     public function test_can_unfollow_another_user()
     {
         $john = factory(User::class)->create(['username' => 'john']);

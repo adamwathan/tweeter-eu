@@ -7,10 +7,12 @@
     </li>
     @forelse ($users as $user)
         <li class="list-group-item list-group-item-lg">
-            <strong>{{ '@' . $user->username }}</strong>
+            <a href="{{ route('users.show', ['username' => $user->username]) }}" class="link-secondary">
+                <strong>{{ '@' . $user->username }}</strong>
+            </a>
         </li>
     @empty
-        <li class="list-group-item text-center">
+        <li class="list-group-item list-group-item-lg text-center">
             Yikes, it looks like you don't have any followers yet!
         </li>
     @endforelse

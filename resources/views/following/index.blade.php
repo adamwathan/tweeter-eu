@@ -8,7 +8,9 @@
     @forelse ($users as $user)
         <li class="list-group-item list-group-item-lg-short flex-justified">
             <div>
-                <strong>{{ '@' . $user->username }}</strong>
+                <a href="{{ route('users.show', ['username' => $user->username]) }}" class="link-secondary">
+                    <strong>{{ '@' . $user->username }}</strong>
+                </a>
             </div>
             <form action="/following/{{ $user->username }}" method="POST">
                 {!! csrf_field() !!}
@@ -17,7 +19,7 @@
             </form>
         </li>
     @empty
-        <li class="list-group-item text-center">
+        <li class="list-group-item list-group-item-lg text-center">
             Yikes, it looks like you aren't following anyone yet!
         </li>
     @endforelse

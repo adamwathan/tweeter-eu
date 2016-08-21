@@ -5,7 +5,9 @@
     @forelse ($users as $user)
     <li class="list-group-item flex-justified">
         <div>
-            <strong>{{ '@' . $user->username }}</strong>
+            <a href="{{ route('users.show', ['username' => $user->username]) }}" class="link-secondary">
+                <strong>{{ '@' . $user->username }}</strong>
+            </a>
         </div>
         <form action="/following" method="POST">
             {!! csrf_field() !!}

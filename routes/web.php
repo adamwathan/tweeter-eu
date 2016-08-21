@@ -25,6 +25,9 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/tweets', 'TweetsController@store')->name('tweets.store');
+
+    Route::post('/following', 'FollowingController@store')->name('following.store');
 });
+
 
 Route::get('/{username}', 'UsersController@show')->name('users.show');

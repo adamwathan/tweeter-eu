@@ -49,4 +49,21 @@ class User extends Authenticatable
     {
         $this->tweets()->create(['body' => $tweetBody]);
     }
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
+    }
+
+    public function follow($user)
+    {
+        if ($this->follows($user)) {
+            return;
+        }
+        $this->following()->attach($user);
+    }
+
+    public function follows($user)
+    {
+        return $this->following()->where('following_id', $user->id)->count() > 0;
+    }
 }

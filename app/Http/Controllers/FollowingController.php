@@ -30,6 +30,6 @@ class FollowingController extends Controller
 
         Auth::user()->unfollow($user_to_unfollow);
 
-        return redirect()->back();
+        return redirect()->route('user-following.index', ['username' => Auth::user()->username]);
     }
 }

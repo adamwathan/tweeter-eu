@@ -11,9 +11,4 @@
 |
 */
 
-Route::group([
-    'prefix' => 'api',
-    'middleware' => 'auth:api',
-], function () {
-    //
-});
+Route::get('{username}/tweets', 'Api\UserTweetsController@index');

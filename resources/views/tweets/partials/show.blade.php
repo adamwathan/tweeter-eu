@@ -1,6 +1,8 @@
 <div>
     <h5 class="u-mt-0">
-        <strong>{{ '@' . $tweet->user->username }}</strong>
+        <a href="{{ route('users.show', ['username' => $tweet->user->username]) }}" class="link-secondary">
+            <strong>{{ '@' . $tweet->user->username }}</strong>
+        </a>
         <small>
             {{ $tweet->created_at->diffForHumans() }}
         </small>

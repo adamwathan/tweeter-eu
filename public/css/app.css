@@ -5840,4 +5840,10 @@ body {
 .stat-value {
   font-size: 1.5em; }
 
+.link-secondary {
+  color: #1e3948; }
+  .link-secondary:hover, .link-secondary:focus {
+    text-decoration: underline;
+    color: black; }
+
 /*# sourceMappingURL=app.css.map */

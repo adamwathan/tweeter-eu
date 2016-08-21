@@ -106,3 +106,11 @@ body {
 .stat-label {
     // font-size: 2em;
 }
+
+.link-secondary {
+    color: $gray-dark;
+    &:hover, &:focus {
+        text-decoration: underline;
+        color: darken($gray-dark, 20%);
+    }
+}

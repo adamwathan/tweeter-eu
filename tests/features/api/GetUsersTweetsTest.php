@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ViewUsersTweetsTest extends TestCase
+class GetUsersTweetsTest extends TestCase
 {
     use DatabaseMigrations;
 

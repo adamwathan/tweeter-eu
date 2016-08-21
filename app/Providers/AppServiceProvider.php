@@ -15,16 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('partials.who-to-follow', function ($view) {
-            $users = Auth::user()->notFollowing()->latest()->limit(5)->get();
-            $view->with('users', $users);
-        });
-
-        View::composer('partials.user-profile', function ($view) {
-            $view->with('tweetCount', $view->user->tweets()->count());
-            $view->with('followerCount', $view->user->followers()->count());
-            $view->with('followingCount', $view->user->following()->count());
-        });
+        //
     }
 
     /**

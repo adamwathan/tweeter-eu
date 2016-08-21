@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,4 +13,6 @@
 |
 */
 
-Route::get('{username}/tweets', 'Api\UserTweetsController@index');
+Route::get('/user', function (Request $request) {
+    return $request->user();
+});

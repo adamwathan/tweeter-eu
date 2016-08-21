@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Events\NewFollower;
-use App\Listeners\EmailNewFollowerNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -15,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        NewFollower::class => [
-            EmailNewFollowerNotification::class,
+        'App\Events\SomeEvent' => [
+            'App\Listeners\EventListener',
         ],
     ];
 

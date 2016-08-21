@@ -14,7 +14,6 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function setUp()
     {
         parent::setUp();
-        Facade::clearResolvedInstances();
     }
 
     /**

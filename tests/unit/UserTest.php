@@ -41,4 +41,48 @@ class UserTest extends TestCase
 
         $this->assertTrue($john->follows($mary));
     }
+
+    public function test_can_unfollow_another_user()
+    {
+        // @todo
+    }
+
+    public function test_timeline_contains_users_tweets()
+    {
+        $user = factory(User::class)->create();
+        $user->tweet("My tweet!");
+
+        $tweets = $user->timeline()->get();
+
+        $this->assertTrue($tweets->contains(function ($tweet) {
+            return $tweet->body == "My tweet!";
+        }));
+    }
+
+    public function test_timeline_contains_tweets_from_followed_users()
+    {
+        $user = factory(User::class)->create();
+        $following = factory(User::class)->create();
+        $user->follow($following);
+        $following->tweet("Following tweet!");
+
+        $tweets = $user->timeline()->get();
+
+        $this->assertTrue($tweets->contains(function ($tweet) {
+            return $tweet->body == "Following tweet!";
+        }));
+    }
+
+    public function test_timeline_does_not_contain_tweets_from_users_not_followed()
+    {
+        $user = factory(User::class)->create();
+        $notFollowing = factory(User::class)->create();
+        $notFollowing->tweet("Not following tweet!");
+
+        $tweets = $user->timeline()->get();
+
+        $this->assertFalse($tweets->contains(function ($tweet) {
+            return $tweet->body == "Following tweet!";
+        }));
+    }
 }

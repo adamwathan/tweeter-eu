@@ -1,4 +1,4 @@
-@extends('_layouts.logged-in')
+@extends('_layouts.user-sidebar')
 
 @section('content')
 <ul class="list-group">

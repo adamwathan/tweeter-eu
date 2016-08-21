@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading text-center">
-        <h4>{{ '@' . Auth::user()->username }}</h4>
+        <h4>{{ '@' . $user->username }}</h4>
     </div>
     <div class="panel-body">
         <div class="row">

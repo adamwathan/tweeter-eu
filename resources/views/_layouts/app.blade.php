@@ -7,10 +7,7 @@
             @yield('content')
         </div>
         <div class="col-sm-5">
-            @if (Auth::check())
-                @include('partials.user-profile')
-                @include('partials.who-to-follow')
-            @endif
+            @yield('sidebar')
         </div>
     </div>
 </div>

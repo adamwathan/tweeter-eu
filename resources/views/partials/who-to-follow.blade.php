@@ -2,6 +2,7 @@
     <li class="list-group-item">
         <h4>Who To Follow</h4>
     </li>
+
     @forelse ($users as $user)
     <li class="list-group-item flex-justified">
         <div>

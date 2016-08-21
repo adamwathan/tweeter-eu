@@ -1,7 +1,7 @@
 @extends('_layouts.app')
 
 @section('content')
-<ul class="list-group">
+<ul class="list-group" id="following">
     <li class="list-group-item list-group-item-lg">
         <h4 class="u-mt-0 u-mb-0">People {{ "@{$user->username}" }} follows</h4>
     </li>

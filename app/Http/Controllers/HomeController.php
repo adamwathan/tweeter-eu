@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     private function timeline()
     {
-        $tweets = Tweet::latest()->paginate(20);
+        $tweets = Auth::user()->timeline()->paginate(20);
 
         return view('timeline.index', [
             'tweets' => $tweets,

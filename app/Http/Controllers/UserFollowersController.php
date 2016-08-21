@@ -14,7 +14,7 @@ class UserFollowersController extends Controller
     {
         $user = User::findByUsername($username);
 
-        return view('followers.index', [
+        return view('user-followers.index', [
             'user' => $user,
             'followers' => $user->followers,
         ]);

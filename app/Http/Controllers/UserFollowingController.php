@@ -17,29 +17,9 @@ class UserFollowingController extends Controller
     {
         $user = User::findByUsername($username);
 
-        return view('following.index', [
+        return view('user-following.index', [
             'user' => $user,
             'following' => $user->following,
         ]);
-    }
-
-    public function store()
-    {
-        $userToFollow = User::where('username', request('username'))->firstOrFail();
-
-        Auth::user()->follow($userToFollow);
-
-        Event::fire(new NewFollower(Auth::user(), $userToFollow));
-
-        return redirect()->route('following.index');
-    }
-
-    public function destroy($username)
-    {
-        $user_to_unfollow = User::where('username', $username)->firstOrFail();
-
-        Auth::user()->unfollow($user_to_unfollow);
-
-        return redirect()->back();
     }
 }

@@ -14,23 +14,23 @@
 Route::get('/', 'HomeController@index');
 
 Route::group(['namespace' => 'Auth'], function () {
-    Route::get('sign-up', 'RegisterController@showRegistrationForm');
-    Route::post('sign-up', 'RegisterController@register');
+    Route::get('/sign-up', 'RegisterController@showRegistrationForm');
+    Route::post('/sign-up', 'RegisterController@register');
 
-    Route::get('sign-in', 'LoginController@showLoginForm');
-    Route::post('sign-in', 'LoginController@login');
+    Route::get('/sign-in', 'LoginController@showLoginForm');
+    Route::post('/sign-in', 'LoginController@login');
 
-    Route::any('logout', 'LoginController@logout');
+    Route::any('/logout', 'LoginController@logout');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('tweets', 'TweetsController@store')->name('tweets.store');
+    Route::post('/tweets', 'TweetsController@store')->name('tweets.store');
 
-    Route::get('{username}/followers', 'UserFollowersController@index')->name('followers.index');
+    Route::post('/following', 'FollowingController@store')->name('following.store');
+    Route::delete('/following/{followName}', 'FollowingController@destroy')->name('following.destroy');
 
-    Route::get('{username}/following', 'UserFollowingController@index')->name('following.index');
-    Route::post('{username}/following', 'UserFollowingController@store')->name('following.store');
-    Route::delete('{username}/following/{username}', 'FollowingController@destroy')->name('following.destroy');
+    Route::get('/{username}/followers', 'UserFollowersController@index')->name('user-followers.index');
+    Route::get('/{username}/following', 'UserFollowingController@index')->name('user-following.index');
 });
 
-Route::get('{username}', 'UsersController@show')->name('users.show');
+Route::get('/{username}', 'UsersController@show')->name('users.show');

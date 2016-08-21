@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="col-xs-4">
-                <a href="{{ route('followers.index', ['username' => $user->username]) }}" class="stat">
+                <a href="{{ route('user-followers.index', ['username' => $user->username]) }}" class="stat">
                     <div class="stat-value">
                         {{ $followerCount }}
                     </div>
@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="col-xs-4">
-                <a href="{{ route('following.index', ['username' => $user->username]) }}" class="stat">
+                <a href="{{ route('user-following.index', ['username' => $user->username]) }}" class="stat">
                     <div class="stat-value">
                         {{ $followingCount }}
                     </div>

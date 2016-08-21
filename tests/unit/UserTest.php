@@ -22,6 +22,7 @@ class UserTest extends TestCase
     public function test_post_new_tweet()
     {
         $user = factory(User::class)->create();
+
         $user->tweet('My first tweet');
 
         $tweet = $user->tweets()->first();
@@ -31,16 +32,13 @@ class UserTest extends TestCase
 
     public function test_can_follow_another_user()
     {
-        $dhh = factory(User::class)->create(['username' => 'dhh']);
-        $adamwathan = factory(User::class)->create(['username' => 'adamwathan']);
+        $john = factory(User::class)->create(['username' => 'john']);
+        $mary = factory(User::class)->create(['username' => 'mary']);
 
-        $this->assertFalse($dhh->follows($adamwathan));
+        $this->assertFalse($john->follows($mary));
 
-        $dhh->follow($adamwathan);
+        $john->follow($mary);
 
-        $this->assertTrue($dhh->follows($adamwathan));
+        $this->assertTrue($john->follows($mary));
     }
 }
-
-
-
